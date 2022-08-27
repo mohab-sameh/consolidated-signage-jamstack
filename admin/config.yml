@@ -1,0 +1,1088 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: project
+    label: Projects
+    folder: cms/project
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_sort-order
+        label: Sort order
+        widget: number
+        required: false
+      - hint: ''
+        name: f_client
+        label: Client
+        widget: string
+        required: false
+      - hint: ''
+        name: f_category-type-of-project
+        label: Category / type of project
+        widget: string
+        required: false
+      - hint: ''
+        name: f_year
+        label: Year
+        widget: string
+        required: false
+      - hint: Used on project list grid
+        name: f_main-project-image
+        label: Main Project Image slide
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_main-project-image-slide-2
+        label: Main project image slide 2
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_main-project-image-slide-3
+        label: Main project image slide 3
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_project-summary
+        label: Project Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_project-images
+        label: Project Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: project
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[project].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Home, key: 2268ff'
+            label: Text
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: Projects, key: -37ac8366'
+            label: Text
+            name: '-37ac8366'
+            widget: string
+          - hint: 'Original text: About us, key: 645f0031'
+            label: Text
+            name: 645f0031
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: >-
+              Original text: Consolidated Signage is located in Clayton
+              Victoria, and have been providing signage solutions Australia wide
+              for over 40 years. We pride ourselves on creativity, personal
+              service and attention to detail., key: 3ccaf843
+            label: Text
+            name: 3ccaf843
+            widget: text
+          - hint: >-
+              Original text: We are collaborators who are design savvy project
+              managers and fabricators., key: -16c11966
+            label: Text
+            name: '-16c11966'
+            widget: string
+          - hint: >-
+              Original text: Consolidated has provided bespoke creative
+              fabrication, architectural features, wayfinding and signage
+              solutions for over 40 years., key: -3694fed6
+            label: Text
+            name: '-3694fed6'
+            widget: text
+          - hint: >-
+              Original text: Consolidated collaborates with architects,
+              designers, developers bringing our collective knowledge,
+              experience and can-do attitude to the most difficult and
+              challenging projects., key: 218e274a
+            label: Text
+            name: 218e274a
+            widget: text
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: >-
+              Original text: We aim to understand your creative vision and align
+              the necessary traditional fabrication, emerging technologies and
+              manufacturing techniques to bring your vision to life as cost
+              effectively as possible., key: 6c2958ae
+            label: Text
+            name: 6c2958ae
+            widget: text
+          - hint: 'Original text: 01., key: ba4d'
+            label: Text
+            name: ba4d
+            widget: string
+          - hint: 'Original text: Design & Project Management, key: -216998da'
+            label: Text
+            name: '-216998da'
+            widget: string
+          - hint: >-
+              Original text: We are design-led and can support your project with
+              all documentation, shop drawings as well as in-house prototype
+              production, leading to rapid development and testing of
+              alternatives. We focus on applying our knowledge and experience in
+              support of your project., key: 30bd59dc
+            label: Text
+            name: 30bd59dc
+            widget: text
+          - hint: >-
+              Original text: Consolidated is design-led and can support your
+              project with all design, documentation and shop drawings followed
+              by in-house prototype production, leading to rapid development and
+              testing of cost or creative alternatives. , key: 568d5dcd
+            label: Text
+            name: 568d5dcd
+            widget: text
+          - hint: >-
+              Original text: We're focussed on the application our knowledge and
+              experience to support the time, quality and cost objectives of
+              your project, key: 6cdf4d7b
+            label: Text
+            name: 6cdf4d7b
+            widget: text
+          - hint: 'Original text: 02., key: ba6c'
+            label: Text
+            name: ba6c
+            widget: string
+          - hint: 'Original text: Manufacturing, key: -73a6ae2'
+            label: Text
+            name: '-73a6ae2'
+            widget: string
+          - hint: >-
+              Original text: We work as a team to apply our diverse design,
+              project management and fabrication, skills and experience for best
+              project effect. We start every project with the end in mind and
+              then throughout the process refine production methods and
+              outsourced partners. This enables us to offer the best technical
+              and cost effective solutions., key: 3655c6ec
+            label: Text
+            name: 3655c6ec
+            widget: text
+          - hint: 'Original text: 03., key: ba8b'
+            label: Text
+            name: ba8b
+            widget: string
+          - hint: 'Original text: Our History, key: 353b6380'
+            label: Text
+            name: 353b6380
+            widget: string
+          - hint: 'Original text: 1, key: 31'
+            label: Text
+            name: '31'
+            widget: string
+          - hint: 'Original text:  Location , key: -46bb6535'
+            label: Text
+            name: '-46bb6535'
+            widget: string
+          - hint: 'Original text: 30, key: 65d'
+            label: Text
+            name: 65d
+            widget: string
+          - hint: 'Original text:  Employees , key: 1d6c357b'
+            label: Text
+            name: 1d6c357b
+            widget: string
+          - hint: 'Original text: 42 , key: c962'
+            label: Text
+            name: c962
+            widget: string
+          - hint: 'Original text: Years & counting , key: -46b162d7'
+            label: Text
+            name: '-46b162d7'
+            widget: string
+          - hint: 'Original text: 3000 +, key: 59c219e8'
+            label: Text
+            name: 59c219e8
+            widget: string
+          - hint: 'Original text:  Clients , key: -3d7280a8'
+            label: Text
+            name: '-3d7280a8'
+            widget: string
+          - hint: 'Original text: 15,000 +, key: 239408b3'
+            label: Text
+            name: 239408b3
+            widget: string
+          - hint: 'Original text:  Completed projects, key: -2c112511'
+            label: Text
+            name: '-2c112511'
+            widget: string
+          - hint: 'Original text: Featured projects, key: 5891280c'
+            label: Text
+            name: 5891280c
+            widget: string
+          - hint: >-
+              Original text: We work as a team both with our people and yours.
+              We have the best mix of skills, expertise and scale to be
+              extremely nimble. We're easy to talk to and work with., key:
+              -703d295c
+            label: Text
+            name: '-703d295c'
+            widget: text
+          - hint: 'Original text: Learn more, key: -52aefc2f'
+            label: Text
+            name: '-52aefc2f'
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: 38 Sarton Road, , key: 2d1d406a'
+            label: Text
+            name: 2d1d406a
+            widget: string
+          - hint: 'Original text: Clayton VIC 3168, key: 3df5d0fe'
+            label: Text
+            name: 3df5d0fe
+            widget: string
+          - hint: 'Original text: 03 9501 0600, key: 6989e8cc'
+            label: Text
+            name: 6989e8cc
+            widget: string
+          - hint: 'Original text: sales@csignage.com.au, key: -1ffa0f04'
+            label: Text
+            name: '-1ffa0f04'
+            widget: string
+          - hint: 'Original text: Instagram, key: 792b2792'
+            label: Text
+            name: 792b2792
+            widget: string
+          - hint: 'Original text: Facebook, key: 217bfee6'
+            label: Text
+            name: 217bfee6
+            widget: string
+          - hint: 'Original text: © Consolidated Signage, key: -fed37ec'
+            label: Text
+            name: '-fed37ec'
+            widget: string
+          - hint: 'Original text: Site by Bien Studio, key: 25e95456'
+            label: Text
+            name: '25e95456'
+            widget: string
+          - hint: >-
+              Original text: We have the best mix of skills, expertise and scale
+              to be extremely nimble. We're easy to talk to and work with., key:
+              393efbaa
+            label: Text
+            name: 393efbaa
+            widget: text
+          - hint: 'Original text: Location, key: 752a03d5'
+            label: Text
+            name: 752a03d5
+            widget: string
+          - hint: 'Original text: Employees, key: 14ac0f65'
+            label: Text
+            name: 14ac0f65
+            widget: string
+          - hint: 'Original text: 42, key: 67e'
+            label: Text
+            name: 67e
+            widget: string
+          - hint: "Original text: Years &\_conuting, key: -7802a97b"
+            label: Text
+            name: '-7802a97b'
+            widget: string
+          - hint: 'Original text: 3,000+, key: 5989bdd4'
+            label: Text
+            name: 5989bdd4
+            widget: string
+          - hint: 'Original text: Clients , key: 39ff9f38'
+            label: Text
+            name: 39ff9f38
+            widget: string
+          - hint: 'Original text: 15,000+, key: 7d04c683'
+            label: Text
+            name: 7d04c683
+            widget: string
+          - hint: 'Original text: Completed projects, key: 1ea2a2cf'
+            label: Text
+            name: 1ea2a2cf
+            widget: string
+          - hint: 'Original text: Project Management and Design, key: -712b95c3'
+            label: Text
+            name: '-712b95c3'
+            widget: string
+          - hint: >-
+              Original text: Our multidisciplinary team comprises a range of
+              project management and design professionals from a range of
+              management, technical and creative backgrounds. , key: -23020ee8
+            label: Text
+            name: '-23020ee8'
+            widget: text
+          - hint: >-
+              Original text: The studio is structured to deliver projects from
+              creation to completion., key: -b10cf2e
+            label: Text
+            name: '-b10cf2e'
+            widget: string
+          - hint: 'Original text: Our factory, key: 59ae1816'
+            label: Text
+            name: 59ae1816
+            widget: string
+          - hint: >-
+              Original text: We build in-house and exercise complete control of
+              manufacturing quality from concept design to delivery. , key:
+              2cba84fa
+            label: Text
+            name: 2cba84fa
+            widget: text
+          - hint: >-
+              Original text: We are always open to opportunity, we love meeting
+              new people, understanding who they are and what we can do
+              together., key: -60696d75
+            label: Text
+            name: '-60696d75'
+            widget: text
+          - hint: 'Original text: Consolidated signage, key: 2b734d1d'
+            label: Text
+            name: 2b734d1d
+            widget: string
+          - hint: 'Original text: Get in touch, key: -5230a9d2'
+            label: Text
+            name: '-5230a9d2'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: Twitter, key: 2c9a4253'
+            label: Text
+            name: 2c9a4253
+            widget: string
+          - hint: 'Original text: More projects, key: f47dcc5'
+            label: Text
+            name: f47dcc5
+            widget: string
+          - hint: >-
+              Original text: We build in-house and exercise complete control of
+              manufacturing quality from concept design to delivery. This
+              in-house capacity drives compressed construction schedules,
+              reduced project costs and consistently high-quality outcomes. It
+              enables rapid design iterations. In-house manufacturing enables a
+              high level of service provision to stakeholders across all facets
+              of the manufacturing process., key: -16fb709d
+            label: Text
+            name: '-16fb709d'
+            widget: text
+          - hint: "Original text: Type:\_, key: -69cb6380"
+            label: Text
+            name: '-69cb6380'
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /projects, key: -2f68657'
+            label: Link
+            name: '-2f68657'
+            widget: string
+          - hint: 'Original link: /about-us, key: -66ead1f3'
+            label: Link
+            name: '-66ead1f3'
+            widget: string
+          - hint: 'Original link: /contact-us, key: 5e5270da'
+            label: Link
+            name: 5e5270da
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.google.com/maps/dir//38+Sarton+Rd,+Clayton+VIC+3168/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x6ad6152e15bdd9e7:0xda5fa3ddd0d60d2f?sa=X&ved=2ahUKEwiInbuBivnsAhWQzTgGHZe4C_QQwwUwAHoECAMQAw,
+              key: -39fb5364
+            label: Link
+            name: '-39fb5364'
+            widget: string
+          - hint: 'Original link: tel:0395010622, key: 2dd98625'
+            label: Link
+            name: 2dd98625
+            widget: string
+          - hint: >-
+              Original link:
+              mailto:sales@csignage.com.au?subject=Let's%20talk%3A, key:
+              49e7686f
+            label: Link
+            name: 49e7686f
+            widget: string
+          - hint: 'Original link: http://www.bienstudio.com.au, key: 639db240'
+            label: Link
+            name: 639db240
+            widget: string
+          - hint: 'Original link: tel:0395010600, key: 2dd985e5'
+            label: Link
+            name: 2dd985e5
+            widget: string
+          - hint: >-
+              Original link:
+              mailto:sales@csignage.com.au?subject=Let's%20Talk%3A%20, key:
+              -40fb858c
+            label: Link
+            name: '-40fb858c'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: i1c838bb
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4884bff9
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i3fb8dbe0
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '71548872'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5bcebbc4
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i670b2c1c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 84ea34b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 2d9dcb46
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-75a833f5'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 96a0bdb
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 611dd774
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 241ffa94
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-7fe85cc3'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: a75642d
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5d908206'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: a91932f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 79c191b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3bee3ad0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-28839248'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-28f44e50'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-28e636cf'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3ec312
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: a837bae
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-28bbf04c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: a674cac
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2891a9c9'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-28ca07cd'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-28d81f4e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5ba318ce
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 27789c17
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
