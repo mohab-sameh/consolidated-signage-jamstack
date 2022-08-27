@@ -16,9 +16,9 @@ This project is a continuation on the previous <a href="https://github.com/mohab
 
 
 <br />
-<h1 align='left'>Usage :bookmark_tabs</h1>
+<h1 align='left'>Usage :bookmark_tabs:</h1>
 
-### To use this project (w/ Netlify CMS): 📋
+### To use this project (w/ <a href="https://github.com/netlify/netlify-cms">Netlify CMS</a>): 📋
 - Fork this repo.
 - Create a Netlify account.
 - Add a new site on your Netlify account (choose your forked version of this repo as the project's source)
