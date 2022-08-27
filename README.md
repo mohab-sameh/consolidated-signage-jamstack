@@ -60,3 +60,5 @@ I'd love to deploy this site to other Headless-CMS platforms as well, so feel fr
 
 ![FireShot Capture 038 - Consolidated Signage - Notary Van Damme _ Govaert Vanhoutte_ - genuine-cranachan-9038ca netlify app](https://user-images.githubusercontent.com/37941642/187029403-6d95af67-591b-45e8-a217-c338c44713fd.png)
 
+![image](https://user-images.githubusercontent.com/37941642/187029671-6b53e6e6-e4c8-4a22-98c8-c49dbd1522c4.png)
+
