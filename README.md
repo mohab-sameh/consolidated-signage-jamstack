@@ -23,9 +23,7 @@ This project is a continuation on the previous <a href="https://github.com/mohab
 - Create a Netlify account.
 - Add a new site on your Netlify account (choose your forked version of this repo as the project's source)
 - Configure site Identity.
-- Allow external providers, and add GitHub as an external provider.
-- Invite your email (used on your GitHub account) in the general Identity tab.
-- Access the CMS panel by adding '/admin' after the ending of the URL of your Netlify app.
+- Access and use Netlify CMS.
 
 
 
@@ -33,7 +31,7 @@ This project is a continuation on the previous <a href="https://github.com/mohab
 <h1 align='left'>Live Demo</h1>
 
 ### Try a live test instance: 💻
-- [Click here to check a live instance](https://genuine-cranachan-9038ca.netlify.app/)
+- <a href="https://genuine-cranachan-9038ca.netlify.app/" target="_blank">Click here to check a live instance</a>
 
 
 <br />
