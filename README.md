@@ -39,12 +39,13 @@ This project is a continuation on the previous <a href="https://github.com/mohab
 <br />
 <h1 align='left'>Contact Me</h1>
 
-If you have any inquiries/recommendations feel free to contact me any time: mohabsameh@outlook.com 📫
-If you want to access the CMS admin panel and check out site management using Netlify CMS, hit me up and I'll send you an invite!
+- If you have any inquiries/recommendations feel free to contact me any time: mohabsameh@outlook.com 📫
+- If you want to access the CMS admin panel and check out site management using Netlify CMS, hit me up and I'll send you an invite!
 
 <br />
 <h1 align='left'>Collaboration :octocat:</h1>
 This code is Headles-CMS-ready. Feel free to fork this repo and attach your Headless CMS of choice.
+<br />
 I'd love to deploy this site to other Headless-CMS platforms as well, so feel free to contact me if you want to collaborate on that.
 
 <br />
