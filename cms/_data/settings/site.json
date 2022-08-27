@@ -2,12 +2,16 @@
   "domain": "",
   "images_optimization": {
     "formats": [
-      "webp"
+      "webp",
+      "avif"
     ],
     "dimensions": [
       800,
       1080,
-      1600
+      1600,
+      500,
+      2000,
+      2600
     ]
   }
 }
