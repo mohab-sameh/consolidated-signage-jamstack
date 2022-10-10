@@ -42,7 +42,7 @@ This project is a continuation on the previous <a href="https://github.com/mohab
 
 <br />
 <h1 align='left'>Collaboration :octocat:</h1>
-This code is Headles-CMS-ready. Feel free to fork this repo and attach your Headless CMS of choice.
+This code is Headless-CMS-ready. Feel free to fork this repo and attach your Headless CMS of choice.
 <br />
 I'd love to deploy this site to other Headless-CMS platforms as well, so feel free to contact me if you want to collaborate on that.
 
